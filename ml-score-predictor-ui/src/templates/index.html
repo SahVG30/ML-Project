@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Student Score Predictor</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Score Predictor</h1>
+        <form action="/predict" method="POST">
+            <label for="study_hours">Study Hours:</label>
+            <input type="number" id="study_hours" name="study_hours" required>
+
+            <label for="previous_score">Previous Score:</label>
+            <input type="number" id="previous_score" name="previous_score" required>
+
+            <label for="sleep_hours">Sleep Hours:</label>
+            <input type="number" id="sleep_hours" name="sleep_hours" required>
+
+            <label for="sample_paper_count">Practiced Sample Paper Count:</label>
+            <input type="number" id="sample_paper_count" name="sample_paper_count" required>
+
+            <label for="extracurricular">Extracurricular Activities:</label>
+            <select id="extracurricular" name="extracurricular" required>
+                <option value="True">Yes</option>
+                <option value="False">No</option>
+            </select>
+
+            <button type="submit">Predict Score</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <h2>Predicted Score: {{ prediction }}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
